@@ -26,4 +26,11 @@ pub mod ryougae_solana_dapp {
 
         Ok(())
     }
+
+    pub fn take_offer(ctx: Context<TakeOffer>) -> Result<()> {
+        instructions::take_offer::send_wanted_tokens_to_maker(&ctx)?;
+        let _ = instructions::take_offer::withdraw_and_close_vault(ctx);
+
+        Ok(())
+    }
 }
